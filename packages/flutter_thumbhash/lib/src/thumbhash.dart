@@ -1,7 +1,9 @@
 import 'dart:convert';
 import 'dart:typed_data';
+import 'dart:ui';
 
 import 'package:flutter/widgets.dart';
+import 'package:flutter_thumbhash/src/raw_image.dart';
 import 'package:thumbhash/thumbhash.dart' as thumbhash;
 
 /// Represents ThumbHash instance, contains byte data for image placeholder
@@ -45,8 +47,15 @@ class ThumbHash {
   /// ```
   ImageProvider toImage() {
     final rgbaImage = thumbhash.thumbHashToRGBA(_data);
-    final bmpImage = thumbhash.rgbaToBmp(rgbaImage);
-    return MemoryImage(bmpImage);
+
+    var raw = RawImageData(
+      rgbaImage.rgba,
+    rgbaImage.width,
+      rgbaImage.height,
+    pixelFormat: PixelFormat.rgba8888,
+    );
+    
+    return RawImageProvider(raw);
   }
 
   /// Returns average color of the image represented by the ThumbHash instance
