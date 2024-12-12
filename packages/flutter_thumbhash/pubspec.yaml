@@ -5,10 +5,11 @@ repository: https://github.com/PiN73/thumbhash/tree/master/packages/flutter_thum
 homepage: https://evanw.github.io/thumbhash/
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=2.14.0 <4.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
+  crypto: ^3.0.6
   flutter:
     sdk: flutter
   thumbhash: ^0.1.0
